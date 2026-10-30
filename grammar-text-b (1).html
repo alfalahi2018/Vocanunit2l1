@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Grammar/Vocabulary - Text B</title>
+<style>
+:root{--bg:#eaf6ff;--card:#fff;--ink:#1f3347;--acc:#e0568a;--soft:#fff3d6;--line:#bcd6ea;--ok:#2e9e5b;--bad:#d64545;--sel:#ffd54a;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14222e;--card:#1e3345;--ink:#eaf3fa;--acc:#f07aa6;--soft:#3a3320;--line:#3b5870}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Trebuchet MS",Verdana,sans-serif;padding:12px}
+.wrap{max-width:900px;margin:auto}
+.top{display:flex;gap:10px;flex-wrap:wrap}
+.top input{flex:1;min-width:110px;border:0;border-bottom:2px solid var(--ink);background:transparent;color:var(--ink);font-size:16px;padding:6px}
+h1{text-align:center;color:var(--acc);margin:10px 0;font-size:clamp(28px,6vw,46px)}
+.bar{background:var(--acc);color:#fff;border-radius:14px;padding:10px 16px;font-weight:bold;font-size:18px}
+.hint{font-style:italic;margin:8px 4px}
+.words{background:var(--soft);border:3px dashed #e5b84a;border-radius:16px;padding:10px;display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:10px 0}
+.words span{background:var(--card);border:2px solid var(--ink);border-radius:20px;padding:6px 14px;font-weight:bold;font-size:18px;cursor:pointer}
+.card{background:var(--card);border:3px solid var(--line);border-radius:20px;padding:12px;text-align:center;transition:transform .15s}
+.big{font-size:100px;line-height:1.15;display:inline-block;cursor:pointer}
+.ok{background:var(--ok)!important;color:#fff!important;border-color:var(--ok)!important;animation:pop .5s}
+.bad{background:var(--bad)!important;color:#fff!important;border-color:var(--bad)!important;animation:shake .45s}
+@keyframes pop{50%{transform:scale(1.2)}}
+@keyframes shake{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+.foot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin:14px 0}
+.score{border:3px solid var(--ink);padding:8px 18px;font-weight:bold;font-size:22px;border-radius:8px}
+button.act{background:var(--acc);color:#fff;border:0;border-radius:12px;padding:12px 22px;font-size:18px;font-weight:bold;cursor:pointer;font-family:inherit;margin:2px}
+.credit{text-align:center;margin:18px 0;opacity:.8}
+#win{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;align-items:center;justify-content:center;z-index:20}
+#win div{background:var(--card);border-radius:24px;padding:30px;text-align:center;max-width:90%;animation:pop .6s}
+#win h2{font-size:34px;margin:0 0 8px;color:var(--acc)}
+.fall{position:fixed;top:-50px;font-size:34px;animation:fall 3s linear forwards;z-index:30;pointer-events:none}
+@keyframes fall{to{transform:translateY(110vh) rotate(360deg)}}
+
+.pass{background:var(--card);border:3px solid var(--line);border-radius:18px;padding:16px;font-size:23px;line-height:2.2;margin:10px 0}
+.gap{display:inline-block;min-width:110px;border-bottom:3px solid var(--ink);text-align:center;font-weight:bold;margin:0 4px;position:relative}
+.gap sup{font-size:13px;position:absolute;right:-4px;top:-4px}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0}
+.row b{font-size:24px;min-width:34px}
+.opt{flex:1;min-width:100px;background:var(--card);color:var(--ink);border:3px solid var(--line);border-radius:30px;padding:10px 8px;font-size:21px;font-weight:bold;cursor:pointer;font-family:inherit}
+.opt:hover{transform:scale(1.04)}
+</style></head><body><div class="wrap">
+<div class="top"><label>Name: <input></label><label>Class: <input></label><label>Date: <input></label></div>
+<h1>🦈 Text B 🦈</h1>
+<div class="bar">GRAMMAR / VOCABULARY – Text B (5 marks)</div>
+<p class="hint">For each item, tap the bubble next to the correct option.</p>
+<div style="text-align:center"><span class="big" id="pic" style="font-size:120px">🦈</span></div>
+<div class="pass" id="ps"></div>
+<div id="it"></div>
+<div class="foot"><div class="score">SCORE <span id="sc">0</span> / 5</div><div><button class="act" id="rd" style="background:#3d8bd6">🔊 Read the text</button><button class="act" id="rs">🔄 Try again</button></div></div>
+<div class="credit">Created by T.Badria Alfalahi</div></div>
+<div id="win"><div><div style="font-size:90px">🏆</div><h2>Well done!</h2><p style="font-size:22px">You scored <b id="fs"></b> / 5</p><button class="act" id="cl2">Close</button></div></div>
+<script>
+let ac;
+function snd(f,d,t,v){try{ac=ac||new (window.AudioContext||window.webkitAudioContext)();const o=ac.createOscillator(),g=ac.createGain();o.type=t||"sine";o.frequency.value=f;g.gain.value=v||.15;o.connect(g);g.connect(ac.destination);o.start();g.gain.exponentialRampToValueAtTime(.001,ac.currentTime+d);o.stop(ac.currentTime+d)}catch(e){}}
+function good(){snd(523,.15);setTimeout(()=>snd(659,.15),120);setTimeout(()=>snd(784,.3),240)}
+function bad(){snd(180,.35,"sawtooth",.12)}
+function say(t){try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang="en-US";u.rate=.85;speechSynthesis.speak(u)}catch(e){}}
+function rain(l){l.forEach((e,i)=>setTimeout(()=>{const s=document.createElement("div");s.className="fall";s.textContent=e;s.style.left=Math.random()*95+"vw";document.body.appendChild(s);setTimeout(()=>s.remove(),3100)},i*90))}
+function celebrate(n){fs.textContent=n;win.style.display="flex";rain(["🎉","⭐","🎈","✨","🏆","🐪","🎊","🌟","🎉","⭐","🎈","✨","🎊","🌟","🏆","🐪"]);good()}
+document.getElementById("cl2").onclick=()=>win.style.display="none";
+document.getElementById("rs").onclick=()=>build();
+
+const D={"seg": ["Sharks are fish. They ", 1, " in the sea. They are very ", 2, ". They have a big ", 3, " on their back. Their skin has hard ", 4, ". They use their fins ", 5, " swim. They eat fish."], "opts": [["live", "lives", "living"], ["fast", "faster", "fastest"], ["fin", "beak", "hump"], ["scales", "feathers", "whiskers"], ["to", "at", "it"]], "ans": ["live", "fast", "fin", "scales", "to"]};let score=0,done=0,filled={};
+function text(){return D.seg.map(s=>typeof s==="number"?(filled[s]||"blank"):s).join("")}
+function draw(){ps.innerHTML=D.seg.map(s=>typeof s==="number"?`<span class="gap" id="g${s}">${filled[s]||"&nbsp;"}<sup>(${s})</sup></span>`:s).join("")}
+function build(){score=0;done=0;filled={};sc.textContent=0;win.style.display="none";draw();it.innerHTML="";
+ D.opts.forEach((o,i)=>{const n=i+1,r=document.createElement("div");r.className="row";let tried=false,fin=false;r.innerHTML=`<b>${n})</b>`;
+  o.forEach(w=>{const b=document.createElement("button");b.className="opt";b.textContent="○ "+w;
+   b.onclick=()=>{if(fin)return;say(w);
+    if(w===D.ans[i]){fin=true;done++;b.classList.add("ok");b.textContent="● "+w;filled[n]=w;draw();document.getElementById("g"+n).classList.add("ok");document.getElementById("g"+n).style.color="#fff";if(!tried){score++;sc.textContent=score}good();rain(["⭐"]);document.getElementById("pic").animate([{transform:"scale(1)"},{transform:"scale(1.3) rotate(8deg)"},{transform:"scale(1)"}],500);if(done==5)setTimeout(()=>{celebrate(score);say(text())},900)}
+    else{tried=true;b.classList.add("bad");b.style.pointerEvents="none";bad()}};
+   r.appendChild(b)});it.appendChild(r)})}
+document.getElementById("rd").onclick=()=>say(text().replace(/blank/g,"blank"));
+document.getElementById("pic").onclick=()=>say(text());
+build();
+</script></body></html>
